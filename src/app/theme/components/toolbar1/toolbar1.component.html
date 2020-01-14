@@ -1,0 +1,46 @@
+<mat-toolbar id="top-toolbar" class="top-toolbar">
+  <div class="theme-container" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <span fxHide="false" fxHide.gt-sm>
+        <button mat-button (click)="sidenavToggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </span>
+      <app-contacts fxLayout="row" fxLayoutAlign="start center" fxShow="false" fxShow.gt-sm></app-contacts>
+    </div>
+    <app-social-icons fxLayout="row" fxLayoutAlign="start center" fxShow="false" fxShow.gt-md></app-social-icons>
+    <div fxLayout="row" fxLayoutAlign="end center" class="">
+      <!-- <app-currency></app-currency>
+      <app-lang></app-lang> -->
+      <app-user-menu *ngIf="user" [user]="user"></app-user-menu>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-toolbar id="main-toolbar" class="mat-elevation-z2">
+  <div class="theme-container" fxLayout="row" fxLayoutAlign="space-between center">
+    <a class="logo" routerLink="/">
+      <app-logo></app-logo>
+    </a>
+    <div fxShow="false" fxShow.gt-sm class="horizontal-menu">
+      <app-horizontal-menu [menuParentId]="0"></app-horizontal-menu>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <!-- <a routerLink="/account/favorites" mat-icon-button matTooltip="Favorites" fxShow="false" fxShow.gt-md>
+          <mat-icon [matBadge]="appService.Data.favorites.length" 
+                    [matBadgeHidden]="appService.Data.favorites.length == 0" 
+                    matBadgeSize="small" 
+                    matBadgeColor="warn">favorite_border</mat-icon>
+      </a>
+      <a routerLink="/compare" mat-icon-button matTooltip="Compare list" fxShow="false" fxShow.gt-md class="mr-3 ml-2">
+          <mat-icon [matBadge]="appService.Data.compareList.length" 
+                    [matBadgeHidden]="appService.Data.compareList.length == 0" 
+                    matBadgeSize="small" 
+                    matBadgeColor="warn">compare_arrows</mat-icon>
+      </a>       -->
+      <!-- <a routerLink="/login" mat-mini-fab color="primary" fxHide="false" fxHide.gt-xs><mat-icon>add</mat-icon></a> -->
+      <!-- <a routerLink="/submit-property" mat-raised-button color="accent" fxShow="false" fxShow.gt-xs class="uppercase">submit property</a> -->
+      <a routerLink="/login" mat-raised-button color="primary" class="uppercase" *ngIf="!user">Sign In</a>
+      <a (click)="logout()" mat-raised-button color="primary" class="uppercase" *ngIf="user">Sign Out</a>
+    </div>
+  </div>
+</mat-toolbar>

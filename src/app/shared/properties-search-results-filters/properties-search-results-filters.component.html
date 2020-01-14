@@ -1,0 +1,14 @@
+<mat-chip-list>
+    <mat-chip *ngIf="searchFields?.petType">
+        {{searchFields?.petType.name}}
+        <mat-icon color="warn" matChipRemove (click)="remove('petType')">cancel</mat-icon>
+    </mat-chip>
+    <mat-chip *ngIf="searchFields?.petStatus && searchFields?.petStatus.length > 0">
+        <span *ngFor="let type of searchFields?.petStatus; let last = last;" class="mr-1">{{type.name}}<span *ngIf="!last">,</span></span>
+        <mat-icon color="warn" matChipRemove (click)="remove('petStatus')">cancel</mat-icon>
+    </mat-chip>
+    <mat-chip *ngIf="searchFields?.radius">
+        {{searchFields?.radius}}
+        <mat-icon color="warn" matChipRemove (click)="remove('radius')">cancel</mat-icon>
+    </mat-chip>
+</mat-chip-list>

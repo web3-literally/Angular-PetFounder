@@ -1,0 +1,90 @@
+<mat-card class="property-item p-0" [ngClass]="[viewType + '-item', 'column-'+column]" [class.full-width-page]="fullWidthPage" fxLayout="row wrap">  
+  
+    <div fxFlex="100" fxShrink="3" [fxFlex.gt-sm]="(viewType=='list') ? 40 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="thumbnail-section">
+
+        <div fxLayout="row wrap" class="property-status">
+            <span [style.background-color]="getStatusBgColor(pet.foundLost)">{{pet.foundLost}}</span>
+        </div>
+       
+        <!--<div *ngIf="pet.gallery.length == 1" class="mat-card-image w-100 m-0">-->
+            <!--<img [src]="pet.gallery[0]">-->
+        <!--</div>-->
+        <div *ngIf="pet.gallery.length >= 1" class="mat-card-image w-100 m-0">
+            <div class="swiper-container" [swiper]="config">
+                <div class="swiper-wrapper"> 
+                    <div *ngFor="let image of pet.gallery" class="swiper-slide">
+                        <img [attr.data-src]="image" class="swiper-lazy">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div> 
+                </div>  
+                <div class="swiper-pagination white"></div>  
+                <button mat-icon-button class="swiper-button-prev swipe-arrow"><mat-icon class="mat-icon-lg">keyboard_arrow_left</mat-icon></button>
+                <button mat-icon-button class="swiper-button-next swipe-arrow"><mat-icon class="mat-icon-lg">keyboard_arrow_right</mat-icon></button>
+            </div>
+        </div>
+
+        <!--<div class="control-icons">-->
+            <!--<button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Add To Favorite">-->
+                <!--<mat-icon class="mat-icon-sm">favorite_border</mat-icon>-->
+            <!--</button>-->
+            <!--<button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Add To Compare">-->
+                <!--<mat-icon class="mat-icon-sm">compare_arrows</mat-icon>-->
+            <!--</button>  -->
+        <!--</div> -->
+
+    </div>
+    <div fxFlex="100" [fxFlex.gt-sm]="(viewType=='list') ? 60 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="p-3">
+
+        <div fxLayout="column" fxLayoutAlign="start stretch" class="h-100">
+            <mat-card-content class="mb-0">
+              
+                <h1 class="title"><a [routerLink]="['/pets', pet.id]">{{pet.petName}}</a></h1>
+
+                <p fxLayout="row" class="address">
+                    <mat-icon class="text-muted">location_on</mat-icon>
+                    <span>{{pet.location}}</span>
+                </p>
+
+                <!--<div fxLayout="row" fxLayoutAlign="space-between center">-->
+                    <!--<div>-->
+                        <!--<h3 *ngIf="settings.currency == 'USD'" class="primary-color price">-->
+                            <!--<span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>-->
+                            <!--<span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /month</span>-->
+                        <!--</h3>-->
+                        <!--<h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">-->
+                            <!--<span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>-->
+                            <!--<span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>-->
+                        <!--</h3>-->
+                    <!--</div>-->
+                    <!--<app-rating [ratingsCount]="property.ratingsCount" [ratingsValue]="property.ratingsValue"></app-rating>-->
+                <!--</div>-->
+
+                <div *ngIf="viewType=='list' && fullWidthPage" fxShow="false" fxShow.gt-sm class="mt-3"> 
+                    <p>{{pet.desc}}</p>
+                </div>
+
+                <div class="features mt-3">                    
+                    <p><span>Pet Type</span><span>{{pet.petType}}</span></p>
+                    <p><span>Desexed</span><span>{{pet.desexed}}</span></p>
+                    <p><span>Breed</span><span>{{pet.breed}}</span></p>
+                    <p><span>Colour</span><span>{{pet.colour}}</span></p>
+                    <p><span>Age</span><span>{{pet.age}} {{pet.ageUnit}}</span></p>
+                    <p><span>Size</span><span>{{pet.size}}</span></p>
+                </div> 
+
+            </mat-card-content>
+            <div class="sticky-footer-helper" fxFlex="grow"></div>
+            <mat-card-actions class="m-0 p-0" fxLayoutAlign="space-between center"> 
+                <p fxLayout="row" class="date mb-0">
+                    <mat-icon class="text-muted">date_range</mat-icon>
+                    <span class="mx-2">{{pet.date | date:"dd MMMM, yyyy" }}</span>
+                </p>
+                <div>
+                    <a [routerLink]="['/pets', pet.id]" mat-stroked-button color="primary" class="uppercase">Details</a>
+                </div> 
+            </mat-card-actions> 
+        </div>        
+        
+    </div> 
+
+</mat-card>

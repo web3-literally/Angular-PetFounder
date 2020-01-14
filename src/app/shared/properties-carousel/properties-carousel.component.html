@@ -1,0 +1,11 @@
+<div *ngIf="properties" class="properties-carousel">   
+    <div class="swiper-container h-100 carousel-outer" [swiper]="config"> 
+        <div class="swiper-wrapper h-100">      
+            <div *ngFor="let property of properties" class="swiper-slide">
+                <app-property-item [property]="property" [viewType]="'grid'"></app-property-item>                 
+            </div>
+        </div>                      
+        <button mat-mini-fab color="primary" class="prop-prev swiper-button-prev swipe-arrow"><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <button mat-mini-fab color="primary" class="prop-next swiper-button-next swipe-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button> 
+    </div>
+</div>

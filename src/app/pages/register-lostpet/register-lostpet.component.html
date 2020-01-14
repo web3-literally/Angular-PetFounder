@@ -1,0 +1,254 @@
+<div class="p-3">
+    <div class="theme-container">
+
+        <mat-card ngClass.lt-lg="p-0" [formGroup]="submitForm">
+
+            <mat-horizontal-stepper #horizontalStepper linear="true" class="submit-property" (selectionChange)="onSelectionChange($event)">
+
+                <mat-step [stepControl]="submitForm.get('details')" label="Lost Pet Details">
+                    <div class="step-content">
+
+                        <form formGroupName="details" fxLayout="row wrap">
+
+                            <div fxFlex="100" class="p-3">
+                                <h1 class="fw-500 text-center">Lost Pet Details</h1>
+                            </div>
+
+                            <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Pet Name</mat-label>
+                                    <input matInput placeholder="Enter Pet Name" formControlName="petName" autocomplete="off">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Collar/Tag Description</mat-label>
+                                    <input matInput placeholder="Collar/Tag Description" formControlName="collarTagDescription" autocomplete="off">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Pet Type</mat-label>
+                                    <mat-select placeholder="Select Pet Type" formControlName="petType" required>
+                                        <mat-option *ngFor="let petType of petTypes" [value]="petType">
+                                            {{petType.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].petType.errors?.required">Pet Type is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Desexed</mat-label>
+                                    <mat-select placeholder="Select Desexed" formControlName="desexed" required>
+                                        <mat-option *ngFor="let desexed of desexeds" [value]="desexed">
+                                            {{desexed.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].desexed.errors?.required">Desexed is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Breed</mat-label>
+                                    <mat-select placeholder="Select Breed" formControlName="breed" required>
+                                        <mat-option *ngFor="let breed of breeds" [value]="breed">
+                                            {{breed.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].breed.errors?.required">Breed is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Colour</mat-label>
+                                    <mat-select placeholder="Select Colour" formControlName="colour" required>
+                                        <mat-option *ngFor="let colour of colours" [value]="colour">
+                                            {{colour.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].colour.errors?.required">Colour is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="divider w-100 m-3"></div>
+
+                            <div fxFlex="50" fxFlex.gt-xs="25" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Age</mat-label>
+                                    <input matInput placeholder="Age" formControlName="age" onlyNumber required autocomplete="off">
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].age.errors?.required">Age is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="50" fxFlex.gt-xs="25" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Age Unit</mat-label>
+                                    <mat-select placeholder="Select Age Unit" formControlName="ageUnit" required>
+                                        <mat-option *ngFor="let ageUnit of ageUnits" [value]="ageUnit">
+                                            {{ageUnit.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].ageUnit.errors?.required">Age Unit is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="50" fxFlex.gt-xs="25" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Size</mat-label>
+                                    <mat-select placeholder="Select Size" formControlName="size" required>
+                                        <mat-option *ngFor="let size of sizes" [value]="size">
+                                            {{size.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].size.errors?.required">Size is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="50" fxFlex.gt-xs="25" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Gender</mat-label>
+                                    <mat-select placeholder="Select Gender" formControlName="gender" required>
+                                        <mat-option *ngFor="let gender of genders" [value]="gender">
+                                            {{gender.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].gender.errors?.required">Gender is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="divider w-100 m-3"></div>
+
+                            <div fxFlex="50" fxFlex.gt-xs="25" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Microchipped</mat-label>
+                                    <mat-select placeholder="Select Microchipped" formControlName="microchipped" required>
+                                        <mat-option *ngFor="let microchipped of microchippeds" [value]="microchipped">
+                                            {{microchipped.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].microchipped.errors?.required">Microchipped is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="50" fxFlex.gt-xs="25" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Microchip Number</mat-label>
+                                    <input matInput placeholder="Enter Microchip Number" formControlName="microchipNumber" onlyNumber required autocomplete="off">
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].microchipNumber.errors?.required">Microchip Number is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Reward</mat-label>
+                                    <input matInput placeholder="Enter Reward" formControlName="reward" onlyNumber autocomplete="off">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="divider w-100 m-3"></div>
+
+                            <div fxFlex="100" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Date Missing</mat-label>
+                                    <input matInput type="date" placeholder="Date Missing" formControlName="dateMissing" required autocomplete="off">
+                                    <mat-error *ngIf="submitForm.get('details')['controls'].dateMissing.errors?.required">Date Missing is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description" formControlName="desc" rows="7"></textarea>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" class="step-section pb-2">
+                                <p class="mb-0"><span class="uppercase fw-500">Gallery</span><span class="text-muted mx-3">(max 5 images)</span></p>
+                                <input-file formControlName="gallery" fileLimit="5" fileAccept="image/*" required autocomplete="off"></input-file>
+                                <mat-error *ngIf="submitForm.get('details')['controls'].gallery.errors?.required">Gallery is required</mat-error>
+                            </div>
+
+                            <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="end center">
+                                <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center" type="button">
+                                    <span class="mx-1 uppercase">Next</span>
+                                    <mat-icon>navigate_next</mat-icon>
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </mat-step>
+
+                <mat-step [stepControl]="submitForm.get('address')" label="Lost Pet Address">
+                    <div class="step-content">
+
+                        <form formGroupName="address" fxLayout="row wrap">
+
+                            <div fxFlex="100" class="p-3">
+                                <h1 class="fw-500 text-center">Lost Pet Address</h1>
+                            </div>
+
+                            <div fxFlex="100" class="px-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
+                                    <mat-label>Location</mat-label>
+                                    <input matInput placeholder="Enter a location" formControlName="location" autocomplete="off" #addressAutocomplete>
+                                    <button *ngIf="submitForm.get('address')['controls'].location.value" mat-button matSuffix mat-icon-button (click)="submitForm.get('address')['controls'].location.setValue(null)" type="button">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                    <mat-error *ngIf="submitForm.get('address')['controls'].location.errors?.required">Location is required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100" class="px-2 mb-4">
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true" [fullscreenControl]="true" (mapClick)="onMapClick($event)">
+                                    <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="onMarkerDragEnd($event)" ></agm-marker>
+                                </agm-map>
+                            </div>
+
+                            <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+                                <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center" type="button">
+                                    <mat-icon>navigate_before</mat-icon>
+                                    <span class="mx-1 uppercase">Back</span>
+                                </button>
+                                <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center" type="button">
+                                    <span class="mx-1 uppercase">Next</span>
+                                    <mat-icon>navigate_next</mat-icon>
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </mat-step>
+
+                <mat-step label="Confirmation">
+                    <div class="step-content">
+
+                        <div fxLayout="column" fxLayoutAlign="center center" class="pt-5 text-center">
+                            <button mat-fab color="primary"><mat-icon>check</mat-icon></button>
+                            <h2 class="mt-3 uppercase">Thank You!</h2>
+                            <h2 class="my-3">THE PET <span class="primary-color">"{{submitForm.get('details')['controls'].petName.value}}"</span> HAS BEEN COMPLETED!</h2>
+                            <p class="text-muted">If We found this pet. We will contact you again. Thank you.</p>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="center center" class="pt-3">
+                            <button mat-raised-button color="accent" (click)="postLostPet()" type="button">POST LOST PET</button>
+                        </div>
+
+                    </div>
+                </mat-step>
+
+            </mat-horizontal-stepper>
+
+        </mat-card>
+
+
+    </div>
+</div>
